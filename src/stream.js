@@ -8,7 +8,9 @@ readableStream.on('data', (chunk) => {
   data+=chunk
 })
 
-readableStream.on('end', () => {
+// When there is no more data to read the stream emits an "end" event
+readableStream.on('end', () => { 
   const parsed = JSON.parse(data)
   logger.info('Version:', parsed.version)
 })
+
