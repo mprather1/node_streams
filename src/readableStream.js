@@ -1,4 +1,6 @@
 import fs from 'fs'
+import logger from 'winston-color'
+
 const readableStream = fs.createReadStream('package.json')
 var data = ''
 var chunk
@@ -10,5 +12,6 @@ readableStream.on('readable', () => {
 })
 
 readableStream.on('end', () => {
-  console.log(data)
+  const parsed = JSON.parse(data)
+  logger.info('Version:', parsed.version)
 })
